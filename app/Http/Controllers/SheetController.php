@@ -14,10 +14,11 @@ class SheetController extends Controller
     }
 
     public function resolve(Request $request){
-        // $path = $request->file('sheet')->store('public/sheets');
-        // $path = substr(Storage::url($path), 1);
-        // die($path);
-        $this->resolver->putToDatabase('storage/sheets/7nR32MjFFwB6XPalDNgZnv4HLTdWcYcT5kSD7Oyd.xlsx');
-        
+        $path = $request->file('sheet')->store('public/sheets');
+        $path = substr(Storage::url($path), 1);
+
+        $this->resolver->putToDatabase($path);
+
+        return response()->json(['success' => 'success'], 200);
     }
 }
