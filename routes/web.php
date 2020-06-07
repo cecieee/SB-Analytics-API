@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function(){
-    return view('sheet');
-});
+// Route::get('/', function(){
+//     return view('sheet');
+// });
 
-Route::post('/', 'SheetController@resolve');
+// Route::post('/', 'SheetController@resolve');
