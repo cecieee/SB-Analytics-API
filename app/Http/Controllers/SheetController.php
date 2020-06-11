@@ -46,7 +46,7 @@ class SheetController extends Controller
     }
 
     public function search_name($name){
-        $users = StudentDetail::where('first_name',"LIKE", "%{$name}%")->first();
+        $users = StudentDetail::where('first_name',"LIKE", "%{$name}%")->get();
         if($users == NULL){
             return response()->json(['response'=>'error : Member not found']);
         }
