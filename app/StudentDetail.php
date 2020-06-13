@@ -8,5 +8,5 @@ class StudentDetail extends Model
 {
     protected $table = 'details';
 
-    protected $fillable = ['member_id', 'first_name', 'middle_name','last_name'];
+    protected $fillable = ['member_id', 'first_name', 'middle_name','last_name', 'renewal_category'];
 }

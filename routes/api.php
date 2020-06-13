@@ -29,3 +29,5 @@ Route::post('/', 'SheetController@resolve');
 Route::post('/members', 'SheetController@index');
 Route::post('/members/{id}', 'SheetController@search_id');
 Route::post('/members/{id}', 'SheetController@search_name');
+Route::post('/members/{id}', 'SheetController@show_category');
+Route::post('/email', 'SheetController@email');

@@ -19,6 +19,7 @@ class CreateDetailsTable extends Migration
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();
+            $table->string('renewal_category');
             $table->timestamps();
         });
     }

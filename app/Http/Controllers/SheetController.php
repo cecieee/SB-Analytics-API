@@ -54,4 +54,28 @@ class SheetController extends Controller
             return response()->json($users,200);
         }
     }
+
+    public function show_category($cat){
+        $users = StudentDetail::where('renewal_category', $cat)->get();
+
+        if($users == NULL){
+            return response()->json(['response'=>'error']);
+        }
+        else{
+            return response()->json($users,200);
+        }
+    }
+
+    public function email(Request $request){
+        $frm = $request->input('frm');
+        $content = $request->input('content');
+        // $to = "govind_kartha@ieee.org";
+        $to = "govkartha@gmail.com";
+        $subject = "Request more Info";
+        $headers = "From: [$frm]" . "\r\n" . "CC: sjaykh@ieee.org";
+
+        mail($to,$subject,$content,$headers);
+        return response()->json(['response'=>'success']);
+
+    }
 }
