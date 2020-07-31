@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Sheet\SheetResolver;
 use App\StudentDetail;
 
+use SendGrid\Mail\Mail as SendGridMail;
+
 
 class SheetController extends Controller
 {
@@ -66,16 +68,35 @@ class SheetController extends Controller
         }
     }
 
-    public function email(Request $request){
+    public function email(Request $request)
+    {
         $frm = $request->input('frm');
         $content = $request->input('content');
-        // $to = "govind_kartha@ieee.org";
-        $to = "govkartha@gmail.com";
-        $subject = "Request more Info";
-        $headers = "From: [$frm]" . "\r\n" . "CC: sjaykh@ieee.org";
 
-        mail($to,$subject,$content,$headers);
-        return response()->json(['response'=>'success']);
+        try{
+            $email = new SendGridMail;
+            $email->setFrom($frm, 'Test');
+            $email->setSubject('Request more Info');
+            $email->addTo('imakhilravindran@gmail.com', 'Akhil Ravindran');
+            $email->addDynamicTemplateData('content',$content);
+            $email->setTemplateId('d-a518ed897c614219869c9dad6181d4d5');
+
+            $sendgrid = new \SendGrid('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');
+            $response = $sendgrid->send($email);
+            return response()->json('Email is sended', $response->statusCode());
+        }
+        catch (\Exception $e){
+            return response()->json('Email was not send', 500 );
+        }
+
+
+//        // $to = "govind_kartha@ieee.org";
+//        $to = "govkartha@gmail.com";
+//        $subject = "Request more Info";
+//        $headers = "From: [$frm]" . "\r\n" . "CC: sjaykh@ieee.org";
+//
+//        mail($to,$subject,$content,$headers);
+//        return response()->json(['response'=>'success']);
 
     }
 }

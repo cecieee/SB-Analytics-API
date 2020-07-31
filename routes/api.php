@@ -19,15 +19,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', 'RegisterController@register');
 Route::post('/login', 'LoginController@login');
-Route::post('/logout', 'LoginController@logout')->middleware('auth:sanctum');
+Route::get('/logout', 'LoginController@logout')->middleware('auth:sanctum');
 
 Route::post('/users', 'LoginController@users');
 
 Route::middleware('auth:sanctum')->get('users', "LoginController@users") ;;
 
 Route::post('/', 'SheetController@resolve');
-Route::post('/members', 'SheetController@index');
-Route::post('/members/{id}', 'SheetController@search_id');
-Route::post('/members/{id}', 'SheetController@search_name');
-Route::post('/members/{id}', 'SheetController@show_category');
+Route::get('/members', 'SheetController@index');
+Route::get('/members/{id}', 'SheetController@search_id');
+Route::get('/members/{id}', 'SheetController@search_name');
+Route::get('/members/{id}', 'SheetController@show_category');
 Route::post('/email', 'SheetController@email');
