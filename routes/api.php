@@ -25,7 +25,7 @@ Route::post('/users', 'LoginController@users');
 
 Route::middleware('auth:sanctum')->get('users', "LoginController@users") ;;
 
-Route::post('/', 'SheetController@resolve');
+Route::post('/upload', 'SheetController@resolve');
 Route::get('/members', 'SheetController@index');
 Route::get('/members/{id}', 'SheetController@search_id');
 Route::get('/members/{id}', 'SheetController@search_name');
