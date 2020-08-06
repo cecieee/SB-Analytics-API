@@ -15,7 +15,9 @@ class SheetController extends Controller
 
     public function __construct(SheetResolver $resolver){
         $this->resolver = $resolver;
+        $this->middleware('auth');
     }
+
 
     public function resolve(Request $request){
         $path = $request->file('sheet')->store('public/sheets');
